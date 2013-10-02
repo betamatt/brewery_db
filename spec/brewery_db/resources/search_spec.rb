@@ -27,4 +27,14 @@ describe BreweryDB::Resources::Search, :resource do
       end
     end
   end
+
+  context "#upc" do
+    subject(:search) { described_class.new(config) }
+
+    specify do
+      results = double(:results)
+      search.stub(:upc).with(code: 'UPC') { results }
+      expect(search.upc(code: 'UPC')).to eq(results)
+    end
+  end
 end
